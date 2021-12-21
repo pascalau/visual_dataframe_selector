@@ -112,8 +112,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
                 self.data_plt.canvas.subplot_axes[i].legend()
 
-            sns.histplot(self.data_df[subplot_topics_list],
-                         ax=self.hist_plt.canvas.subplot_axes[i], stat="probability")
+            #sns.histplot(self.data_df[subplot_topics_list],
+            #            ax=self.hist_plt.canvas.subplot_axes[i], stat="probability")
 
             self.data_plt.canvas.subplot_axes[i].span = SpanSelector(
                 self.data_plt.canvas.subplot_axes[i],
@@ -139,14 +139,14 @@ class MainWindow(QtWidgets.QMainWindow):
     def on_region_select_callback(self, min_x_val, max_x_val):
         self.data_plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
         cropped_df = self.crop_df(min_x_val, max_x_val)
-        self.update_hist_plot(cropped_df)
+        #self.update_hist_plot(cropped_df)
         dialog_window = ConfirmSelectionWindow()
         selection_accepted = dialog_window.exec_()
 
         self.data_plt.canvas.subplot_axes[0].set_xlim(
             [self.x_start, self.x_end])
         self.data_plt.canvas.draw()
-        self.update_hist_plot(self.data_df)
+        #self.update_hist_plot(self.data_df)
 
         if selection_accepted:
             print("selection accepted and added: ", min_x_val, max_x_val)
